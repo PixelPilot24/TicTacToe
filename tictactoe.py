@@ -30,11 +30,11 @@ class Board:
                 print("Die Anzahl an Spielern muss eine Zahl sein")
 
     def show_board(self):
-        print(self.fields[0] + "|" + self.fields[1] + "|" + self.fields[2])
-        print(self.fields[3] + "|" + self.fields[4] + "|" + self.fields[5])
-        print(self.fields[6] + "|" + self.fields[7] + "|" + self.fields[8])
+        print(self.fields[0] + " | " + self.fields[1] + " | " + self.fields[2])
+        print(self.fields[3] + " | " + self.fields[4] + " | " + self.fields[5])
+        print(self.fields[6] + " | " + self.fields[7] + " | " + self.fields[8])
 
-    def update_board(self, field, player_int) -> list:
+    def update_board(self, field: str, player_int: int) -> list:
         if player_int == 0:
             player_var = "X"
             player_bool = True
@@ -42,7 +42,7 @@ class Board:
             player_var = "O"
             player_bool = False
 
-        field = int(field)
+        field = int(field) - 1
         result = []
 
         if 0 <= field <= 8:
@@ -62,11 +62,9 @@ class Board:
                 result = [player_bool, False]
 
             return result
-        else:
-            print("Die eingegeben Wert muss zwischen 0 und 8 liegen")
 
-    def start_game(self, player_num):
-        print("0|1|2\n3|4|5\n6|7|8")
+    def start_game(self, player_num: int):
+        print("1 | 2 | 3\n4 | 5 | 6\n7 | 8 | 9")
         player_bool = True
         del self.player_list[player_num]
 
@@ -81,6 +79,17 @@ class Board:
                     break
             except ValueError:
                 print("Die eingegeben Wert muss eine Zahl sein")
+            except TypeError:
+                print("Die eingegeben Wert muss zwischen 1 und 9 liegen")
+
+        print("Antwortmöglichkeiten: Ja, Nein")
+        new_game = input("Neues Spiel?: ")
+
+        if new_game == "Ja" or new_game == "ja":
+            self.fields = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+            self.player_list = ["Spieler 1", "Spieler 2", "Computer"]
+            self.round_num = 0
+            self.init_game()
 
 
 if __name__ == "__main__":

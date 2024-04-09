@@ -3,19 +3,19 @@ import random
 
 class Player:
     @staticmethod
-    def computer_turn(fields):
+    def computer_turn(fields: list) -> int:
         possible_moves_list = []
 
         for i in range(9):
             if fields[i] == " ":
-                possible_moves_list.append(i)
+                possible_moves_list.append(i + 1)
 
         computer_choice = random.choice(possible_moves_list)
         print("O(Computer) ist am Zug: " + str(computer_choice))
         return computer_choice
 
     @classmethod
-    def player_turn(cls, player, player_num, fields) -> list:
+    def player_turn(cls, player: bool, player_num: int, fields: list) -> list:
         if player:
             field = input("X(Spieler 1) ist am Zug: ")
             return [field, 0]

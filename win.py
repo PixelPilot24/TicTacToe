@@ -1,6 +1,6 @@
 class Win:
     @staticmethod
-    def check_win(fields) -> str:
+    def check_win(fields: list) -> str:
         finish_list = [
             fields[0] + fields[1] + fields[2],
             fields[3] + fields[4] + fields[5],
@@ -19,7 +19,7 @@ class Win:
                 return "O"
 
     @classmethod
-    def display_winner(cls, fields, o_player) -> bool:
+    def display_winner(cls, fields: list, o_player: str) -> bool:
         win_str = cls.check_win(fields)
 
         if win_str == "X":
